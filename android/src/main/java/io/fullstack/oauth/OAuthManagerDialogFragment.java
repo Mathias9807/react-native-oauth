@@ -214,7 +214,7 @@ public class OAuthManagerDialogFragment extends DialogFragment implements Advanc
 
           if (loadUrl) {
             view.loadUrl(url);
-	    return true;
+            return true;
           }
 
           return false;
