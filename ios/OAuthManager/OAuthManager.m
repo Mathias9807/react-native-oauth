@@ -477,6 +477,9 @@ RCT_EXPORT_METHOD(makeRequest:(NSString *)providerName
             NSError *err;
             NSArray *data;
             
+            NSString *strData = [[NSString alloc]initWithData:rawData encoding:NSUTF8StringEncoding];
+            NSLog(@"RESPONSE: %@", strData);
+            
             // Check if returned data is a valid JSON
             // != nil returned if the rawdata is not a valid JSON
             if ((data = [NSJSONSerialization JSONObjectWithData:rawData
@@ -498,6 +501,7 @@ RCT_EXPORT_METHOD(makeRequest:(NSString *)providerName
                                           };
                 callback(@[errResp]);
             } else {
+                if (data == nil) data = @[];
                 NSDictionary *resp = @{
                                        @"status": @(statusCode),
                                        @"data": data
